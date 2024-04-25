@@ -1,10 +1,11 @@
 import React from 'react'
+import { Form } from '../components'
 
 const Home = () => {
   return (
-    <div>
-      <p>Hello World</p>
-    </div>
+      <>
+      <Form/>
+      </>
   )
 }
 
