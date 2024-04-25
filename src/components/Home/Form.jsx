@@ -58,52 +58,76 @@ const Form = () => {
         }
     }
 
+    const formStyles = {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'start',
+        gap: '1rem',
+        margin: '0px auto'
+    }
+
+    const divP2Styles = {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '60vw',
+        height: '100vh'
+    }
+
+    const inputStyles = {
+        padding: '12px',
+        background: '#292929',
+        border: '1px solid #292929',
+        width: '300px',
+        color: 'white'
+    }
+
+    const paraStyles = {
+        color: 'white',
+        width: '320px',
+        fontSize: '0.8rem'
+    }
+
+    const buttonStyles = {
+        color: 'white',
+        width: '320px',
+        height: '40px',
+        backgroundColor: '#72DB73',
+        border: '1px solid #72DB73',
+        borderRadius: '20px',
+        fontSize: '20px'
+    }
 
     return (
-        <div style={{ display: 'flex', background: 'black', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', background: 'black' }}>
 
             <div style={{ position: 'relative' }}>
-                <p style={{ position: 'absolute', fontSize: '45px', color: 'white', zIndex: '1', fontFamily: 'Roboto', bottom: '8px', left: '120px' }}>Discover new things on <br />Superapp</p>
-                <img src="../src/assets/image13.png" alt="MusicFestivalPhoto" style={{ width: '50vw', height: '100vh' }} />
+                <p style={{ position: 'absolute', fontSize: '45px', color: 'white', zIndex: '1', fontFamily: 'Roboto', bottom: '60px', left: '80px' }}>Discover new things on <br />Superapp</p>
+                <img src="../src/assets/image13.png" alt="MusicFestivalPhoto" style={{ width: '40vw', height: '100vh' }} />
             </div>
 
-            <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '50vw',
-                height: '100vh',
-                overflow: 'hidden'
-            }}>
+            <div style={divP2Styles}>
 
-                <h1 style={{ color: '#72DB73', fontFamily: 'Single Day' }}>Super App</h1>
-                <h4 style={{ color: 'white', margin: '0px auto 50px auto' }}>Create your new account</h4>
+                <h1 style={{ color: '#72DB73', fontFamily: "Single Day ,cursive", margin: '15px auto 15px auto' }}>Super App</h1>
+                <h4 style={{ color: 'white', margin: '0px auto 20px auto' }}>Create your new account</h4>
 
                 <form onSubmit={(e) => {
                     e.preventDefault();
                     validate();
                 }}
+                    style={formStyles}>
 
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        gap: '1rem',
-                        margin: '0px auto',
-                        overflow: 'hidden'
-                    }}
-                >
                     <input
                         type="text"
                         name="" id=""
                         placeholder='Name'
                         value={data.name}
                         onInput={(e) => setData({ ...data, name: e.target.value })}
-                        style={{ padding: '12px', background: '#292929', border: '1px solid #292929', width: '300px' }}
+                        style={inputStyles}
                     />
-                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{error.name}</span>
+                    {error.name && <span style={{ color: 'red', fontSize: '0.8rem' }}>{error.name}</span>}
 
                     <input
                         type="text"
@@ -112,9 +136,11 @@ const Form = () => {
                         placeholder='UserName'
                         value={data.userName}
                         onInput={(e) => setData({ ...data, userName: e.target.value })}
-                        style={{ padding: '12px', background: '#292929', border: '1px solid #292929', width: '300px' }}
+                        style={inputStyles}
                     />
-                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{error.userName}</span>
+                    {error.userName && <span style={{ color: 'red', fontSize: '0.8rem' }}>{error.userName}</span>}
+
+
 
                     <input
                         type="email"
@@ -123,9 +149,11 @@ const Form = () => {
                         placeholder='Email'
                         value={data.email}
                         onInput={(e) => setData({ ...data, email: e.target.value })}
-                        style={{ padding: '12px', background: '#292929', border: '1px solid #292929', width: '300px' }}
+                        style={inputStyles}
                     />
-                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{error.email}</span>
+                    {error.phone && <span style={{ color: 'red', fontSize: '0.8rem' }}>{error.email}</span>}
+
+
 
                     <input
                         type="tel"
@@ -134,9 +162,10 @@ const Form = () => {
                         placeholder='Phone'
                         value={data.phone}
                         onChange={(e) => setData({ ...data, phone: e.target.value })}
-                        style={{ padding: '12px', background: '#292929', border: '1px solid #292929', width: '300px' }}
+                        style={inputStyles}
                     />
-                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{error.phone}</span>
+                    {error.phone && <span style={{ color: 'red', fontSize: '0.8rem' }}>{error.phone}</span>}
+
 
                     <label style={{ width: '320px' }}>
                         <input
@@ -148,16 +177,16 @@ const Form = () => {
                             style={{ margin: '12px auto' }} />
                         <p style={{ color: 'white', display: 'inline-block', margin: 'auto 5px' }}>Share my registration data with Superapp</p>
                     </label>
-                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{error.checkbox}</span>
+                    {error.checkbox && <span style={{ color: 'red', fontSize: '0.8rem' }}>{error.checkbox}</span>}
 
-                    <button type="submit" style={{ color: 'white', width: '320px', height: '40px', backgroundColor: '#72DB73', border: '1px solid #72DB73', borderRadius: '20px', fontSize: '20px' }}>Sign Up</button>
+                    <button type="submit" style={buttonStyles}>Sign Up</button>
                 </form>
 
 
-                <p style={{ color: 'white', width: '320px', fontSize: '0.8rem' }}>By clicking on Sign up. you agree to Superapp <span style={{ color: '#72DB73' }}>Terms and Conditions of Use</span></p>
+                <p style={paraStyles}>By clicking on Sign up. you agree to Superapp <span style={{ color: '#72DB73' }}>Terms and Conditions of Use</span></p>
 
 
-                <p style={{ color: 'white', width: '320px', fontSize: '0.8rem' }}>To learn more about how Superapp collects, uses, shares and protects your personal data please head Superapp <span style={{ color: '#72DB73' }}>Privacy Policy</span></p>
+                <p style={paraStyles}>To learn more about how Superapp collects, uses, shares and protects your personal data please head Superapp <span style={{ color: '#72DB73' }}>Privacy Policy</span></p>
 
             </div>
         </div>
