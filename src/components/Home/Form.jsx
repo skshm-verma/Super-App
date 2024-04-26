@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Form = () => {
+    
+    const navigate = useNavigate()
+
     const [data, setData] = useState({
         name: "",
         userName: "",
@@ -24,6 +28,8 @@ const Form = () => {
 
     function validate() {
 
+        let isError = false
+
         setError((error) => ({
             name: "",
             userName: "",
@@ -35,26 +41,36 @@ const Form = () => {
         if (data.name.trim().length === 0) {
             console.warn("Name is required")
             setError((error) => { return { ...error, name: "Name is required" } })
+            isError = true
         }
 
         if (data.userName.trim().length === 0) {
             console.warn("UserName is required")
             setError((error) => { return { ...error, userName: "UserName is required" } })
+            isError = true
         }
 
         if (data.email.trim().length === 0) {
             console.warn("Email is required")
             setError((error) => { return { ...error, email: "Email is required" } })
+            isError = true
         }
 
         if (data.phone.trim().length === 0 || !validatePhone(data.phone)) {
             console.warn("Phone number is either empty or invalid")
             setError((error) => { return { ...error, phone: "Phone number is either empty or invalid" } })
+            isError = true
         }
 
         if (!data.checkbox) {
             console.warn("Checkbox is required")
             setError((error) => { return { ...error, checkbox: "Checkbox is required" } })
+            isError = true
+        }
+
+        if(!isError){
+            console.log('Valid Data')
+            navigate('./movies')
         }
     }
 
@@ -91,6 +107,7 @@ const Form = () => {
     }
 
     const buttonStyles = {
+        cursor : 'pointer',
         color: 'white',
         width: '320px',
         height: '40px',
@@ -110,7 +127,7 @@ const Form = () => {
 
             <div style={divP2Styles}>
 
-                <h1 style={{ color: '#72DB73', fontFamily: "Single Day ,cursive", margin: '15px auto 15px auto' }}>Super App</h1>
+                <h1 style={{ color: '#72DB73', fontFamily: "Single Day ,cursive", margin: '15px auto'}}>Super App</h1>
                 <h4 style={{ color: 'white', margin: '0px auto 20px auto' }}>Create your new account</h4>
 
                 <form onSubmit={(e) => {
