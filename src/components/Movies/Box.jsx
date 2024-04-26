@@ -1,15 +1,5 @@
 import React from 'react'
 
-const colors = [
-    {
-        id:1,
-        color:'orange'
-    },
-    {
-        id : 2,
-        color : 'blue'
-    }
-]
 const Box = ({data ,selectedMovies , setSelectedMovies}) => {
 
     const handleSelection = () => {
@@ -35,7 +25,7 @@ const Box = ({data ,selectedMovies , setSelectedMovies}) => {
     onClick={handleSelection}
     >
       <span style={{display : 'block' , color : 'white'}}>{data.name}</span>
-      <img src = {data.img} alt=""  style={{width: '150px' , height : '90px' , display : 'block' , marginTop : '20px'}}/>
+      <img src = {data.img} alt="genreImg"  style={{width: '150px' , height : '90px' , display : 'block' , marginTop : '20px'}}/>
     </div>
   )
 }
