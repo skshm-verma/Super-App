@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Box, Chip } from '../components'
+import { useNavigate } from 'react-router-dom'
 
 const moviesData = [
   {
@@ -52,7 +53,7 @@ const moviesData = [
   },
   {
     id: 9,
-    name: "Fiction",
+    name: "Science Fiction",
     img: "../src/assets/fictionImg.png",
     color: '#6CD061'
   },
@@ -61,6 +62,18 @@ const moviesData = [
 const Movies = () => {
 
   const [selectedMovies, setSelectedMovies] = useState([])
+  const navigate = useNavigate()
+
+  const handleNextPage = () => {
+    if (selectedMovies.length < 3) {
+      alert('Please select atleast 3 movies')
+    } else {
+      localStorage.setItem('selectedMovies', JSON.stringify(selectedMovies))
+      localStorage.setItem('moviesData', JSON.stringify(moviesData))
+      navigate("/browse")
+    }
+  }
+
   return (
     <>
       <div style={{
@@ -75,19 +88,17 @@ const Movies = () => {
           height: '100vh',
           marginTop: '30px'
         }}>
-          <span style={{color : '#72DB73' , display : 'block' , fontFamily : 'Single Day, cursive' , fontSize: '55px' , margin : '20px 7rem 10px 7rem' , padding : '20px'}}>
+          <span style={{ color: '#72DB73', display: 'block', fontFamily: 'Single Day, cursive', fontSize: '55px', margin: '20px 7rem 10px 7rem', padding: '20px' }}>
             Super app
           </span>
-          <span style={{color : 'white' , display : 'block', fontSize: '70px' , margin : '10px 7rem' , padding : '20px'}}>
+          <span style={{ color: 'white', display: 'block', fontSize: '70px', margin: '10px 7rem', padding: '20px' }}>
             Choose your <br />entertainment <br />category
           </span>
-          <div style={{margin : '20px 7rem'}}>
+          <div style={{ margin: '20px 7rem' }}>
             {selectedMovies.map((data) => {
               return <Chip key={data.id} moviesData={moviesData} id={data} selectedMovies={selectedMovies} setSelectedMovies={setSelectedMovies} />
             })}
           </div>
-
-
         </div>
 
 
@@ -105,6 +116,8 @@ const Movies = () => {
             return <Box key={data.id} data={data} selectedMovies={selectedMovies} setSelectedMovies={setSelectedMovies} />
           })}
         </div>
+
+
         <div style={{
           width: '120px',
           fontSize: '20px',
@@ -114,14 +127,17 @@ const Movies = () => {
           border: '1px solid #148A08',
           padding: '12px',
           textAlign: 'center',
-          pointer : 'cursor',
+          cursor: 'pointer',
           position: 'absolute',
           bottom: '70px',
           right: '160px'
         }}
+          onClick={handleNextPage}
         >
-          <span>Next Page</span>
+          <span >Next Page</span>
         </div>
+
+
       </div>
     </>
   )

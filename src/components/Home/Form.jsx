@@ -70,7 +70,8 @@ const Form = () => {
 
         if(!isError){
             console.log('Valid Data')
-            navigate('./movies')
+            localStorage.setItem('formData',JSON.stringify(data))
+            navigate('/movies')
         }
     }
 

@@ -14,7 +14,7 @@ const Chip = ({ moviesData, id, selectedMovies, setSelectedMovies }) => {
             borderRadius : '25px',
             color: 'white',
             backgroundColor : '#148A08',
-            width : '120px',
+            width : '150px',
             fontSize : '18px',
             textAlign : 'center',
             fontFamily : 'Roboto'
