@@ -1,214 +1,234 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import image13 from "../../../public/assets/image13.png";
+import './Home.css'
 
 const Form = () => {
-    
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    const [data, setData] = useState({
-        name: "",
-        userName: "",
-        email: "",
-        phone: "",
-        checkbox: false
-    })
+  const [data, setData] = useState({
+    name: "",
+    userName: "",
+    email: "",
+    phone: "",
+    checkbox: false,
+  });
 
-    const [error, setError] = useState({
-        name: "",
-        userName: "",
-        email: "",
-        phone: "",
-        checkbox: false
-    })
+  const [error, setError] = useState({
+    name: "",
+    userName: "",
+    email: "",
+    phone: "",
+    checkbox: false,
+  });
 
-    function validatePhone(phone) {
-        const phoneRegex = /^[0-9]{10}$/     // a regular expression to check the validation of phone No
-        return phoneRegex.test(phone)
+  function validatePhone(phone) {
+    const phoneRegex = /^[0-9]{10}$/; // a regular expression to check the validation of phone No
+    return phoneRegex.test(phone);
+  }
+
+  function validate() {
+    let isError = false;
+
+    setError((error) => ({
+      name: "",
+      userName: "",
+      email: "",
+      phone: "",
+      checkbox: false,
+    }));
+
+    if (data.name.trim().length === 0) {
+      console.warn("Name is required");
+      setError((error) => {
+        return { ...error, name: "Name is required" };
+      });
+      isError = true;
     }
 
-    function validate() {
-
-        let isError = false
-
-        setError((error) => ({
-            name: "",
-            userName: "",
-            email: "",
-            phone: "",
-            checkbox: false
-        }))
-
-        if (data.name.trim().length === 0) {
-            console.warn("Name is required")
-            setError((error) => { return { ...error, name: "Name is required" } })
-            isError = true
-        }
-
-        if (data.userName.trim().length === 0) {
-            console.warn("UserName is required")
-            setError((error) => { return { ...error, userName: "UserName is required" } })
-            isError = true
-        }
-
-        if (data.email.trim().length === 0) {
-            console.warn("Email is required")
-            setError((error) => { return { ...error, email: "Email is required" } })
-            isError = true
-        }
-
-        if (data.phone.trim().length === 0 || !validatePhone(data.phone)) {
-            console.warn("Phone number is either empty or invalid")
-            setError((error) => { return { ...error, phone: "Phone number is either empty or invalid" } })
-            isError = true
-        }
-
-        if (!data.checkbox) {
-            console.warn("Checkbox is required")
-            setError((error) => { return { ...error, checkbox: "Checkbox is required" } })
-            isError = true
-        }
-
-        if(!isError){
-            console.log('Valid Data')
-            localStorage.setItem('formData',JSON.stringify(data))
-            navigate('/movies')
-        }
+    if (data.userName.trim().length === 0) {
+      console.warn("UserName is required");
+      setError((error) => {
+        return { ...error, userName: "UserName is required" };
+      });
+      isError = true;
     }
 
-    const formStyles = {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'start',
-        gap: '1rem',
-        margin: '0px auto'
+    if (data.email.trim().length === 0) {
+      console.warn("Email is required");
+      setError((error) => {
+        return { ...error, email: "Email is required" };
+      });
+      isError = true;
     }
 
-    const divP2Styles = {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '60vw',
-        height: '100vh'
+    if (data.phone.trim().length === 0 || !validatePhone(data.phone)) {
+      console.warn("Phone number is either empty or invalid");
+      setError((error) => {
+        return { ...error, phone: "Phone number is either empty or invalid" };
+      });
+      isError = true;
     }
 
-    const inputStyles = {
-        padding: '12px',
-        background: '#292929',
-        border: '1px solid #292929',
-        width: '300px',
-        color: 'white'
+    if (!data.checkbox) {
+      console.warn("Checkbox is required");
+      setError((error) => {
+        return { ...error, checkbox: "Checkbox is required" };
+      });
+      isError = true;
     }
 
-    const paraStyles = {
-        color: 'white',
-        width: '320px',
-        fontSize: '0.8rem'
+    if (!isError) {
+      console.log("Valid Data");
+      localStorage.setItem("formData", JSON.stringify(data));
+      navigate("/movies");
     }
+  }
 
-    const buttonStyles = {
-        cursor : 'pointer',
-        color: 'white',
-        width: '320px',
-        height: '40px',
-        backgroundColor: '#72DB73',
-        border: '1px solid #72DB73',
-        borderRadius: '20px',
-        fontSize: '20px'
-    }
+  return (
+    <div style={{ display: "flex", background: "black" }}>
+      <div style={{ position: "relative" }}>
+        <p className ="part1ParaStyle">
+          Discover new things on <br />
+          Superapp
+        </p>
+        <img
+          src={image13}
+          alt="MusicFestivalPhoto"
+          style={{ width: "40vw", height: "100vh" }}
+        />
+      </div>
 
-    return (
-        <div style={{ display: 'flex', background: 'black' }}>
+      <div className="part2Style">
+        <h1
+          style={{
+            color: "#72DB73",
+            fontFamily: "Single Day ,cursive",
+            margin: "15px auto",
+            fontSize : '3rem'
+          }}
+        >
+          Super App
+        </h1>
+        <h4 
+        style={{ 
+          color: "white", 
+          margin: "0px auto 20px auto",
+          fontSize : '14px'
+           }}>
+          Create your new account
+        </h4>
 
-            <div style={{ position: 'relative' }}>
-                <p style={{ position: 'absolute', fontSize: '45px', color: 'white', zIndex: '1', fontFamily: 'Roboto', bottom: '60px', left: '80px' }}>Discover new things on <br />Superapp</p>
-                <img src="../src/assets/image13.png" alt="MusicFestivalPhoto" style={{ width: '40vw', height: '100vh' }} />
-            </div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            validate();
+          }}
+          className ="formStyle"
+        >
+          <input
+            type="text"
+            name=""
+            id=""
+            placeholder="Name"
+            value={data.name}
+            onInput={(e) => setData({ ...data, name: e.target.value })}
+            className ="inputStyle"
+          />
+          {error.name && (
+            <span style={{ color: "red", fontSize: "0.8rem" }}>
+              {error.name}
+            </span>
+          )}
 
-            <div style={divP2Styles}>
+          <input
+            type="text"
+            name=""
+            id=""
+            placeholder="UserName"
+            value={data.userName}
+            onInput={(e) => setData({ ...data, userName: e.target.value })}
+            className ="inputStyle"
+          />
+          {error.userName && (
+            <span style={{ color: "red", fontSize: "0.8rem" }}>
+              {error.userName}
+            </span>
+          )}
 
-                <h1 style={{ color: '#72DB73', fontFamily: "Single Day ,cursive", margin: '15px auto'}}>Super App</h1>
-                <h4 style={{ color: 'white', margin: '0px auto 20px auto' }}>Create your new account</h4>
+          <input
+            type="email"
+            name=""
+            id=""
+            placeholder="Email"
+            value={data.email}
+            onInput={(e) => setData({ ...data, email: e.target.value })}
+            className ="inputStyle"
+          />
+          {error.phone && (
+            <span style={{ color: "red", fontSize: "0.8rem" }}>
+              {error.email}
+            </span>
+          )}
 
-                <form onSubmit={(e) => {
-                    e.preventDefault();
-                    validate();
-                }}
-                    style={formStyles}>
+          <input
+            type="tel"
+            name=""
+            id=""
+            placeholder="Phone"
+            value={data.phone}
+            onChange={(e) => setData({ ...data, phone: e.target.value })}
+            className ="inputStyle"
+          />
+          {error.phone && (
+            <span style={{ color: "red", fontSize: "0.8rem" }}>
+              {error.phone}
+            </span>
+          )}
 
-                    <input
-                        type="text"
-                        name="" id=""
-                        placeholder='Name'
-                        value={data.name}
-                        onInput={(e) => setData({ ...data, name: e.target.value })}
-                        style={inputStyles}
-                    />
-                    {error.name && <span style={{ color: 'red', fontSize: '0.8rem' }}>{error.name}</span>}
+          <label style={{ width: "320px" }}>
+            <input
+              type="checkbox"
+              name="checkbox"
+              id="checkbox"
+              checked={data.checkbox}
+              onChange={(e) => setData({ ...data, checkbox: e.target.checked })}
+              style={{ margin: "12px auto" }}
+            />
+            <p
+              style={{
+                color: "white",
+                display: "inline-block",
+                margin: "auto 5px",
+              }}
+            >
+              Share my registration data with Superapp
+            </p>
+          </label>
+          {error.checkbox && (
+            <span style={{ color: "red", fontSize: "0.8rem" }}>
+              {error.checkbox}
+            </span>
+          )}
 
-                    <input
-                        type="text"
-                        name=""
-                        id=""
-                        placeholder='UserName'
-                        value={data.userName}
-                        onInput={(e) => setData({ ...data, userName: e.target.value })}
-                        style={inputStyles}
-                    />
-                    {error.userName && <span style={{ color: 'red', fontSize: '0.8rem' }}>{error.userName}</span>}
+          <button type="submit" className="buttonStyle">
+            Sign Up
+          </button>
+        </form>
 
+        <p className="part2ParaStyle">
+          By clicking on Sign up. you agree to Superapp{" "}
+          <span className="AppColor">Terms and Conditions of Use</span>
+        </p>
 
+        <p className="part2ParaStyle">
+          To learn more about how Superapp collects, uses, shares and protects
+          your personal data please head Superapp{" "}
+          <span className="AppColor">Privacy Policy</span>
+        </p>
+      </div>
+    </div>
+  );
+};
 
-                    <input
-                        type="email"
-                        name=""
-                        id=""
-                        placeholder='Email'
-                        value={data.email}
-                        onInput={(e) => setData({ ...data, email: e.target.value })}
-                        style={inputStyles}
-                    />
-                    {error.phone && <span style={{ color: 'red', fontSize: '0.8rem' }}>{error.email}</span>}
-
-
-
-                    <input
-                        type="tel"
-                        name=""
-                        id=""
-                        placeholder='Phone'
-                        value={data.phone}
-                        onChange={(e) => setData({ ...data, phone: e.target.value })}
-                        style={inputStyles}
-                    />
-                    {error.phone && <span style={{ color: 'red', fontSize: '0.8rem' }}>{error.phone}</span>}
-
-
-                    <label style={{ width: '320px' }}>
-                        <input
-                            type="checkbox"
-                            name="checkbox"
-                            id="checkbox"
-                            checked={data.checkbox}
-                            onChange={(e) => setData({ ...data, checkbox: e.target.checked })}
-                            style={{ margin: '12px auto' }} />
-                        <p style={{ color: 'white', display: 'inline-block', margin: 'auto 5px' }}>Share my registration data with Superapp</p>
-                    </label>
-                    {error.checkbox && <span style={{ color: 'red', fontSize: '0.8rem' }}>{error.checkbox}</span>}
-
-                    <button type="submit" style={buttonStyles}>Sign Up</button>
-                </form>
-
-
-                <p style={paraStyles}>By clicking on Sign up. you agree to Superapp <span style={{ color: '#72DB73' }}>Terms and Conditions of Use</span></p>
-
-
-                <p style={paraStyles}>To learn more about how Superapp collects, uses, shares and protects your personal data please head Superapp <span style={{ color: '#72DB73' }}>Privacy Policy</span></p>
-
-            </div>
-        </div>
-    )
-}
-
-export default Form
+export default Form;

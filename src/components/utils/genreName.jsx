@@ -1,6 +1,15 @@
-const selectedMovies = JSON.parse(localStorage.getItem('selectedMovies'))
-const moviesData = JSON.parse(localStorage.getItem('moviesData'))
+const selectedMoviesJSON = localStorage.getItem("selectedMovies");
+const moviesDataJSON = localStorage.getItem("moviesData");
 
-export const genreData = selectedMovies.map(id => {
-    return moviesData.find((movie) => movie.id === id)
-})
+let genreData = [];
+
+if (selectedMoviesJSON && moviesDataJSON) {
+  const selectedMovies = JSON.parse(selectedMoviesJSON);
+  const moviesData = JSON.parse(moviesDataJSON);
+
+  genreData = selectedMovies.map((id) => {
+    return moviesData.find((movie) => movie.id === id);
+  });
+}
+
+export { genreData };

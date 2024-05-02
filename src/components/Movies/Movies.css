@@ -1,0 +1,27 @@
+.chipStyle{
+    display: inline-block;
+    font-family: 'Roboto';
+    text-align: center;
+    font-size: 18px;
+    margin: 10px 12px;
+    width: 170px;
+    padding: 8px;
+    border: 1px solid #11B800;
+    border-radius: 25px;
+    color: white;
+    background-color: #148A08;
+}
+
+.boxStyle{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.boxImg{
+    width: 150px;
+    height: 90px;
+    display: block;
+    margin-top: 20px;
+}

@@ -1,0 +1,303 @@
+/** User Component CSS**/
+
+.userInfoDiv {
+    background-color: #5746EA;
+    border-radius: 25px;
+    color: white;
+    width: 500px;
+    height: 280px;
+    position: absolute
+}
+
+.userInfo {
+    font-family: "Roboto";
+    font-size: 24px;
+    font-weight: 100;
+}
+
+.userChipStyle {
+    display: inline-block;
+    font-family: 'Roboto';
+    text-align: center;
+    font-size: 12px;
+    margin: 5px 10px 2px 0px;
+    width: 90px;
+    padding: 8px;
+    border: 1px solid #9F94FF;
+    border-radius: 25px;
+    color: white;
+    background-color: #9F94FF;
+}
+
+
+/** Notes Component CSS**/
+
+.notesDiv {
+    background-color: #F1C75B;
+    border-radius: 25px;
+    color: black;
+    height: 410px;
+    width: 350px;
+    padding: 10px;
+    position: absolute;
+    left: 39rem;
+}
+
+.notesContainer {
+    height: 400px;
+    width: 260px;
+    margin: 2px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.notesH {
+    font-size: 1.5rem;
+    width: 260px;
+    background-color: #F1C75B;
+    margin-bottom: 5px;
+}
+
+.notesTextArea {
+    border-radius: 25px;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    resize: none;
+    border: none;
+    /* to remove border */
+    outline: none;
+    /* to remove outline  */
+    background-color: #F1C75B;
+    color: black;
+    overflow-y: auto;
+}
+
+
+/** News Component CSS**/
+
+.newsDiv {
+    position: absolute;
+    background-color: black;
+    height: 500px;
+    width: 350px;
+    top: 3.8rem;
+    left: 64rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 340px;
+}
+
+.newsTitle {
+    position: absolute;
+    bottom: 0px;
+    color: white;
+    font-weight: 500;
+    font-size: 24px;
+    padding: 12px;
+    z-index: 1;
+    background-color: black;
+    opacity: 74%;
+}
+
+.newsImg {
+    height: 400px;
+    width: 340px;
+    display: block;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+.newsArticleDiv {
+    background-color: white;
+    height: 200px;
+    width: 100%;
+    overflow-y: auto;
+    border-end-start-radius: 25px;
+    border-end-end-radius: 25px;
+}
+
+.newsArticleText {
+    color: black;
+    font-weight: thin;
+    font-size: 16px;
+    margin: 20px 0px 15px 0px;
+    padding: 20px;
+}
+
+/** Weather Component CSS**/
+
+.weatherDiv {
+    position: absolute;
+    background-color: #101744;
+    border-radius: 25px;
+    height: 140px;
+    width: 500px;
+    top: 19rem;
+}
+
+.weatherDnT {
+    height: 3.5em;
+    width: 100%;
+    background-color: #FF4ADE;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: white;
+}
+
+.dateStyle {
+    display: block;
+    font-size: 28px;
+}
+
+.weatherDataDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 5.5em;
+    width: 100%;
+}
+
+.partition {
+    display: block;
+    color: white;
+    font-size: 36px;
+}
+
+.weatherDataContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/** Clock Component CSS**/
+
+.clockDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 29rem;
+    background-color: #1E2343;
+    border-radius: 25px;
+    width: 900px;
+    height: 230px;
+}
+
+.counterStyle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.timerContainer {
+    background-color: #1E2343;
+    height: 220px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timerH {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 2em;
+    width: 100%;
+    color: #949494;
+    font-size: 24px;
+}
+
+.timerCalDiv {
+    height: 7em;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.timerCalContainer {
+    height: 7em;
+    width: 15%;
+    background-color: #1E2343;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.timerPushButtons {
+    display: block;
+    background-color: #1E2343;
+    border: 1px solid #1E2343;
+}
+
+.timerCalData {
+    display: block;
+    color: white;
+    font-size: 24px;
+}
+
+.timerCalSeparator {
+    display: block;
+    margin: 1.4em 0em;
+    color: white;
+    font-size: 28px;
+}
+
+.buttonDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4em;
+    width: 100%;
+}
+
+.buttonPauseNStart {
+    width: 10.5em;
+    height: 2em;
+    margin-right: 0.6em;
+    background-color: #FF6A6A;
+    border-radius: 25px;
+    border: 1px solid #FF6A6A;
+    cursor: pointer;
+}
+
+.buttonRestart {
+    width: 10.5em;
+    height: 2em;
+    margin: 0em 0.6em;
+    background-color: #FF6A6A;
+    border-radius: 25px;
+    border: 1px solid #FF6A6A;
+    cursor: pointer;
+}
+
+.buttonReset {
+    width: 10.5em;
+    height: 2em;
+    background-color: #FF6A6A;
+    border-radius: 25px;
+    border: 1px solid #FF6A6A;
+    cursor: pointer;
+    margin-left: 0.6em;
+}
+
+.button {
+    color: 'white'
+}

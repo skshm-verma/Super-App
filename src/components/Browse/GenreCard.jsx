@@ -1,42 +1,16 @@
 import React from 'react'
-
+import './Browse.css'
 const GenreCard = ({ genre, val1, val2, movies, IMAGE_URL }) => {
 
     return (
-        <div style={{
-            height: '280px',
-            padding : '0px',
-            margin: '12px 0px 5px 50px'
-        }}>
+        <div className='cardStyle'>
 
-            <h2 style={{
-                display: 'block',
-                margin : '12px 0px 5px 0px',
-                padding : '0px',
-                color: '#878787',
-                fontFamily : 'Roboto'
-            }}>{genre}</h2>
+            <h2 className='h2Tag'>{genre}</h2>
 
-            <ul style={{
-                listStyle: 'none', /* Remove default list dots */
-                padding: '0',
-                margin: '0',
-                display: 'flex', /* Arrange items side-by-side */
-                flexWrap : 'nowrap',
-                height: '250px'
-            }}>
+            <ul className='ultag'>
                 {movies.slice(val1, val2).map(data => (
 
-                    <div style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        width: "150px",
-                        height: '250px',
-                        margin: '5px',
-                        padding: '10px'
-                        
-                    }}>
+                    <div className='liDiv'>
                         <li key={data.id}
                             style={{
                                 margin: '0.5rem', /* Add gap between items */
@@ -51,11 +25,11 @@ const GenreCard = ({ genre, val1, val2, movies, IMAGE_URL }) => {
                                 {<img
                                     src={`${IMAGE_URL}${data.poster_path}`}
                                     alt={data.original_title}
-                                  style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    borderRadius : '12px'
-                                  }}
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        borderRadius: '12px'
+                                    }}
                                 />}
                             </span>
 

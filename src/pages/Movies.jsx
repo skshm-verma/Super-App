@@ -1,60 +1,71 @@
 import React, { useState } from 'react'
 import { Box, Chip } from '../components'
 import { useNavigate } from 'react-router-dom'
+import actionImg from '../../public/assets/actionImg.png'
+import dramaImg from '../../public/assets/dramaImg.png'
+import romanceImg from '../../public/assets/romanceImg.png'
+import thrillerImg from '../../public/assets/thrillerImg.png'
+import westernImg from '../../public/assets/westernImg.png'
+import horrorImg from '../../public/assets/horrorImg.png'
+import fantasyImg from '../../public/assets/fantasyImg.png'
+import musicImg from '../../public/assets/musicImg.png'
+import fictionImg from '../../public/assets/fictionImg.png'
+import dangerIcon from '../../public/assets/dangerIcon.png'
+import '../App.css'
 
 const moviesData = [
   {
     id: 1,
     name: "Action",
-    img: "../src/assets/actionImg.png",
+    img: actionImg,
     color: '#FF5209'
   },
   {
     id: 2,
     name: "Drama",
-    img: "../src/assets/dramaImg.png",
+    img: dramaImg,
     color: '#D7A4FF'
   },
   {
     id: 3,
     name: "Romance",
-    img: "../src/assets/romanceImg.png",
+    img: romanceImg,
     color: '#148A08'
   },
   {
     id: 4,
     name: "Thriller",
-    img: "../src/assets/thrillerImg.png",
+    img: thrillerImg,
     color: '#84C2FF'
   },
   {
     id: 5,
     name: "Western",
-    img: "../src/assets/westernImg.png",
+    img: westernImg,
     color: '#902500'
   },
   {
     id: 6,
     name: "Horror",
-    img: "../src/assets/horrorImg.png",
+    img: horrorImg,
     color: '#7358FF'
   },
   {
     id: 7,
     name: "Fantasy",
-    img: "../src/assets/fantasyImg.png",
+    img: fantasyImg,
     color: '#FF4ADE'
   },
   {
     id: 8,
     name: "Music",
-    img: "../src/assets/musicImg.png",
+    img: musicImg,
     color: '#E61E32'
   },
   {
     id: 9,
     name: "Science Fiction",
-    img: "../src/assets/fictionImg.png",
+    img: fictionImg,
     color: '#6CD061'
   },
 ]
@@ -62,84 +73,64 @@ const moviesData = [
 const Movies = () => {
 
   const [selectedMovies, setSelectedMovies] = useState([])
+  const [danger, setDanger] = useState(false)
   const navigate = useNavigate()
+
+  
 
   const handleNextPage = () => {
     if (selectedMovies.length < 3) {
-      alert('Please select atleast 3 movies')
+      setDanger(true)
     } else {
+      setDanger(false)
       localStorage.setItem('selectedMovies', JSON.stringify(selectedMovies))
       localStorage.setItem('moviesData', JSON.stringify(moviesData))
-      navigate("/browse")
+      navigate("/dashboard")
     }
   }
 
   return (
-    <>
-      <div style={{
-        display: 'flex',
-        backgroundColor: 'black',
-        position: 'relative'
-      }}>
-
+    <div style={{
+      height: '100vh',
+      width: '100%'
+    }}>
+      <div className='moviesStyle'>
 
         <div style={{
-          width: '50vw',
-          height: '100vh',
-          marginTop: '30px'
+          margin: '80px 0px',
+          width: '50rem',
+          height: '40rem'
         }}>
-          <span style={{ color: '#72DB73', display: 'block', fontFamily: 'Single Day, cursive', fontSize: '55px', margin: '20px 7rem 10px 7rem', padding: '20px' }}>
+          <span style={{ color: '#72DB73', display: 'block', fontFamily: 'Single Day, cursive', fontSize: '55px', margin: '15px 5rem 1px 2rem', padding: '15px' }}>
             Super app
           </span>
-          <span style={{ color: 'white', display: 'block', fontSize: '70px', margin: '10px 7rem', padding: '20px' }}>
+          <span style={{ color: 'white', display: 'block', fontSize: '70px', margin: '5px 5rem 10px 2rem', padding: '20px' }}>
             Choose your <br />entertainment <br />category
           </span>
-          <div style={{ margin: '20px 7rem' }}>
+          <div style={{ margin: '20px 5rem 10px 2rem' }}>
             {selectedMovies.map((data) => {
               return <Chip key={data.id} moviesData={moviesData} id={data} selectedMovies={selectedMovies} setSelectedMovies={setSelectedMovies} />
             })}
           </div>
+          { danger && <span style={{display : 'flex' , marginTop : '50px' , marginLeft : '7.5rem'}}>
+            <img width="16" height="16" src={dangerIcon} alt="dangerSign" />
+            <p style={{ color: 'red' ,marginLeft: '0.6rem' , fontSize : '18px' }}>Minimum 3 category required</p>
+          </span>
+          }
         </div>
 
 
-        <div style={{
-          width: '50vw',
-          height: '100vh',
-          marginTop: '30px',
-          marginLeft: '10px',
-          display: 'grid',
-          gap: '3px 3px',
-          gridTemplateColumns: '200px 200px 200px',
-          gridTemplateRows: '180px 180px 180px'
-        }}>
+        <div className='gridDiv'>
           {moviesData.map((data) => {
             return <Box key={data.id} data={data} selectedMovies={selectedMovies} setSelectedMovies={setSelectedMovies} />
           })}
         </div>
 
-
-        <div style={{
-          width: '120px',
-          fontSize: '20px',
-          backgroundColor: '#148A08',
-          color: 'white',
-          borderRadius: '25px',
-          border: '1px solid #148A08',
-          padding: '12px',
-          textAlign: 'center',
-          cursor: 'pointer',
-          position: 'absolute',
-          bottom: '70px',
-          right: '160px'
-        }}
-          onClick={handleNextPage}
-        >
+        <div className='nextPageButton' onClick={handleNextPage} >
           <span >Next Page</span>
         </div>
-
-
       </div>
-    </>
+    </div>
   )
 }
 

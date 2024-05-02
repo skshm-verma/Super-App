@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import './Dashboard.css'
 
 const News = () => {
     const [news, setNews] = useState(null);
@@ -9,9 +10,10 @@ const News = () => {
         setIsLoading(true); // Set loading state to true
         setError(null); // Clear potential errors
 
-        fetch('https://api.webz.io/newsApiLite?token=d89742c1-6a6f-4751-81ad-f898f96cb2cf&q=cricket')
+        fetch('https://newsapi.org/v2/everything?q=ai&apiKey=e9484c5b62024374bac712970554f4c6')
             .then((response) => response.json())
             .then(data => {
+                console.log(data)
                 setNews(data);
             })
             .catch(error => {
@@ -34,19 +36,34 @@ const News = () => {
     if (!news) {
         return <div>No news available.</div>; // Handle case where no news is returned
     }
-    
-    const id = Math.floor(Math.random() * news.posts.length)
-    const markUp = {__html : news.posts[id].highlightText }
-    
+
+
+    const id = Math.floor(Math.random() * news.articles.length)
+
+
 
     return (
-        <div>
-            <p>News Api</p>
+        <div className='newsDiv'>
+
             {news ?
-                <div>
-                    <p>{news.posts[id].title}</p>
-                    <p dangerouslySetInnerHTML={markUp}></p>
-                    <img src={news.posts[id].thread.main_image} alt="cricketNews" style={{ height: '200px', width: '250px' }} />
+                <div className='newsContainer'>
+                    <div style={{
+                        position: 'relative'
+                    }}>
+                        <p className='newsTitle'>
+                            {news.articles[id].title}
+                        </p>
+                        <img
+                            src={news.articles[id].urlToImage}
+                            alt="AiNews"
+                            className='newsImg' />
+                    </div>
+
+                    <div className='newsArticleDiv'>
+                        <p className='newsArticleText'>
+                            {news.articles[id].description}
+                        </p>
+                    </div>
                 </div>
                 :
                 <p>Loading....</p>

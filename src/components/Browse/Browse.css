@@ -1,0 +1,32 @@
+.cardStyle{
+    height: 280px;
+    padding : 0px;
+    margin: 12px 0px 5px 50px;
+}
+
+.h2Tag {
+    display: block;
+    margin: 12px 0px 5px 0px;
+    padding: 0px;
+    color: #878787;
+    font-family: 'Roboto';
+}
+
+.ultag {
+    list-style: none;  /* Remove default list dots */
+    padding: 0px;
+    margin: 0px;
+    display: flex;     /* Arrange items side-by-side */
+    flex-wrap: nowrap;
+    height: 250px;
+}
+
+.liDiv{
+    display: flex ;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+    height: 250px;
+    margin: 5px;
+    padding: 10px;
+}

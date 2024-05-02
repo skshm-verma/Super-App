@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { GenreCard } from '../components';
-
+import { genreData } from '../components/utils/genreName';
+import browseIcon from '../../public/assets/browseIcon.png'
+import '../App.css'
 
 const API_KEY = '022a9681d0072a133bd089449b9c74a6';
 const BASE_URL = 'https://api.themoviedb.org/3';     //Base URL for fetching movie end point
@@ -85,7 +87,7 @@ const genreIds = [
     }
 ]
 
-import { genreData } from '../components/utils/genreName';
+
 
 const Browse = () => {
 
@@ -151,62 +153,38 @@ const Browse = () => {
         console.log(genre.name)
     })
 
-
     return (
+        <div style={{
+            backgroundColor: 'black',
+            height: '100vh',
+            overflow: 'auto'
+        }}>
+
             <div style={{
-                backgroundColor: 'black',
-                height: '100vh',
-                overflow: 'auto'
+                position: 'relative',
+                height: '60px',
             }}>
-
-                <div style={{
-                    position: 'relative',
-                    height: '60px',
-                }}>
-                    <p style={{
-                        margin : '0px',
-                        position: 'absolute',
-                        top: '20px',
-                        left: '30px',
-                        color: '#72DB73',
-                        fontSize : '35px',
-                        fontFamily : 'Single Day'
-                    }}>
-                        Super App
-                    </p>
-
-                    <img src="../src/assets/browseIcon.png" alt="dashboardIcon" style={{
-                        position: 'fixed',
-                        right: '120px',
-                        top: '20px',
-                        height: '60px',
-                        width: '60px'     
-                    }} />
-                </div>
-                <div>
-                    <p style={{
-                        fontFamily: 'Roboto',
-                        fontSize: '20px',
-                        color: 'white',
-                        margin: '15px 0px 2px 50px',
-                        padding: '0px'
-                    }}>Entertainment according to your choice</p>
-                </div>
-                <div>
-                    {
-                        genreName.map((name, index) => {
-                            return <GenreCard
-                                key={name}
-                                genre={name}
-                                val1={index * 10}                     // Adjusting val1 based on index
-                                val2={(index + 1) * 10}               // Adjusting val2 based on index
-                                movies={movies}
-                                IMAGE_URL={IMAGE_URL} />
-                        }
-                        )
-                    }
-                </div>
+                <p className='headerPara'> Super App </p>
+                <img src={browseIcon} alt="dashboardIcon" className='headerImg'/>
             </div>
+            <div>
+                <p className='browseBody'>Entertainment according to your choice</p>
+            </div>
+            <div>
+                {
+                    genreName.map((name, index) => {
+                        return <GenreCard
+                            key={index}
+                            genre={name}
+                            val1={index * 10}                     // Adjusting val1 based on index
+                            val2={(index + 1) * 10}               // Adjusting val2 based on index
+                            movies={movies}
+                            IMAGE_URL={IMAGE_URL} />
+                    }
+                    )
+                }
+            </div>
+        </div>
     )
 }
 
