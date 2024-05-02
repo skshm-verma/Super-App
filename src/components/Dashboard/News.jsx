@@ -12,9 +12,10 @@ const News = () => {
       setError(null); // Clear potential errors
 
       try {
-        const response = await fetch('https://newsapi.org/v2/everything?q=ai&apiKey=e9484c5b62024374bac712970554f4c6');
+        const response = await fetch('https://newsapi.org/v2/everything?q=education&apiKey=e9484c5b62024374bac712970554f4c6');
         const data = await response.json();
         setNews(data);
+  
       } catch (error) {
         setError(error); // Set error state
       } finally {
@@ -24,6 +25,10 @@ const News = () => {
 
     fetchNews();
   }, []); // Empty dependency array to fetch data only once
+
+
+  console.log(news)
+
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -37,8 +42,7 @@ const News = () => {
     return <div>No news available.</div>; // Handle case where no news is returned
   }
 
-  const id = Math.floor(Math.random() * news.articles.length);
-
+  const id = Math.floor((Math.random() * 100)+1);
   return (
     <div className='newsDiv'>
 
