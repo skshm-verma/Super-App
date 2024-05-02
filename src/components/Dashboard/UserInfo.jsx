@@ -3,6 +3,7 @@ import { userInfo } from '../utils/userInfo'
 import { genreData } from '../utils/genreName'
 import image15 from '../../../public/assets/image15.png'
 import './Dashboard.css'
+
 const UserInfo = () => {
 
   const user = userInfo

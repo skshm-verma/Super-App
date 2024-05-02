@@ -12,7 +12,7 @@ const News = () => {
       setError(null); // Clear potential errors
 
       try {
-        const response = await fetch('https://newsapi.org/v2/everything?q=education&apiKey=e9484c5b62024374bac712970554f4c6');
+        const response = await fetch('https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=education&apiKey=e9484c5b62024374bac712970554f4c6');
         const data = await response.json();
         setNews(data);
   
