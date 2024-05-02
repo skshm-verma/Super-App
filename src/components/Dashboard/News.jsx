@@ -37,7 +37,9 @@ const News = () => {
         return <div>No news available.</div>; // Handle case where no news is returned
     }
 
-
+    if (!news || !news.articles) {
+        return <div>No news available.</div>; // Handle case where no news is returned
+    }
     const id = Math.floor(Math.random() * news.articles.length)
 
 
