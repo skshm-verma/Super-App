@@ -10,7 +10,6 @@ const News = () => {
         const fetchNews = async () => {
           setIsLoading(true); // Set loading state to true
           setError(null); // Clear potential errors
-          //https://newsapi.org/v2/everything?q=education&apiKey=e9484c5b62024374bac712970554f4c6
           try {
             const response = await fetch('https://newsdata.io/api/1/news?apikey=pub_4339544e36cda2318a44f5b6dc34fcccb9b0c&country=in');
             const data = await response.json();
@@ -28,9 +27,6 @@ const News = () => {
     }, []); // Empty dependency array to fetch data only once
 
 
-    console.log(news)
-
-
     if (isLoading) {
         return <div>Loading...</div>;
     }
@@ -38,22 +34,12 @@ const News = () => {
     if (error) {
         return <div>Error: {error.message}</div>;
     }
-
-    // if (!news || !news.status || !news.status === 'ok') {
-    //     return <div>No news available.</div>; // Handle case where no news is returned
-    // }
-
+     
+    if (!news || news.length === 0) {
+        return <div>No news found.</div>;
+      }
     const id = Math.floor((Math.random() * 10) + 1);
-    // const randomNews = news[Math.floor(Math.random() * news.length)];
 
-    // const randomIndex = Math.floor(Math.random() * news.length);
-    // const randomNews = news[randomIndex];
-    // const image = randomNews.image_url ? randomNews.image_url : '';
-    // const description = randomNews.description ? randomNews.description : '';
-
-    // console.log(randomNews.title)
-    // console.log(description)
-    // console.log(image)
     return (
         <div className='newsDiv'>
 
@@ -63,18 +49,17 @@ const News = () => {
                         position: 'relative'
                     }}>
                         <p className='newsTitle'>
-                            {/* {randomNews.title} */}
-                            {news[id].title}
+                            {news[id]?.title || ''}
                         </p>
                         <img
-                            src={news[id].image_url}
+                            src={news[id]?.image_url || ''}
                             alt="AiNews"
                             className='newsImg' />
                     </div>
 
                     <div className='newsArticleDiv'>
                         <p className='newsArticleText'>
-                            {news[id].description}
+                            {news[id]?.description || ''}
                         </p>
                     </div>
                 </div>

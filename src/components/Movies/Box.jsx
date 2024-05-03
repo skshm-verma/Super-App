@@ -12,7 +12,7 @@ const Box = ({ data, selectedMovies, setSelectedMovies }) => {
       ])
     }
   }
-  console.log(selectedMovies)
+ 
   return (
     <div
       style={{

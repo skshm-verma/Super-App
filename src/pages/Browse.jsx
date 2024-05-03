@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { GenreCard } from '../components';
-import { genreData } from '../components/utils/genreName';
 import browseIcon from '../../public/assets/browseIcon.png'
 import '../App.css'
 
@@ -91,53 +90,74 @@ const genreIds = [
 
 const Browse = () => {
 
-    const genreList = genreData.map(mId => {
-        return genreIds.find(data => {
-            if (mId.name === data.name)
-                return data
-            return null
-        })
-    })
-
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [genreList, setGenreList] = useState([])
+    const [flag, setFlag] = useState(false)
+
+    const fetchMovies = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+
+            const promises = genreList.map(async (genreId) => {
+                const response = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId.id}&page=1`);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch movies for genre ${genreId.name}`);
+                }
+                const data = await response.json();
+                return data.results.slice(0, 10);
+            });
+
+            const results = await Promise.all(promises);
+            console.log('Fetched movie data:', results);
+            const flattenedMovies = results.reduce((acc, val) => acc.concat(val), []);
+            setMovies(flattenedMovies);
+            setLoading(false);
+        } catch (error) {
+            setError(`Error fetching movies: ${error.message}`);
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-
-        const fetchMovies = async () => {
+        const fetchGenreData = async () => {
             try {
-                setLoading(true);
-                setError(null);
+                const selectedMoviesJSON = localStorage.getItem("selectedMovies");
+                const moviesDataJSON = localStorage.getItem("moviesData");
 
-                // Fetch movies for each genre
-                const promises = genreList.map(async (genreId) => {
-                    const response = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId.id}&page=1`);
-                    if (!response.ok) {
-                        throw new Error('Failed to fetch movies');
-                    }
-                    const data = await response.json();
-                    return data.results.slice(0, 10);
-                });
+                if (selectedMoviesJSON && moviesDataJSON) {
+                    const selectedMovies = JSON.parse(selectedMoviesJSON);
+                    const moviesData = JSON.parse(moviesDataJSON);
 
-                // Wait for all promises to resolve
-                const results = await Promise.all(promises);
+                    const genreData = selectedMovies.map((id) => {
+                        return moviesData.find((movie) => movie.id === id)?.name;
+                    });
 
-                // Flatten the array of arrays into a single array of movies
-                const flattenedMovies = results.reduce((acc, val) => acc.concat(val), []);
+                    console.log('Genre data from localStorage:', genreData);
 
-                setMovies(flattenedMovies);
-                setLoading(false);
+                    const genreMemory = genreData.map(name => {
+                        return genreIds.find(data => {
+                            if (name === data.name)
+                                return data;
+                            return null;
+                        });
+                    });
 
+                    console.log('Mapped genre data:', genreMemory);
+                    setGenreList(genreMemory);
+                    setFlag(true);
+                }
             } catch (error) {
-                setError(error.message);
-                setLoading(false);
+                console.error('Error fetching genre data:', error);
             }
         };
 
-        fetchMovies();
-
-    }, []);
+        fetchGenreData().then(() => {
+            fetchMovies();
+        });
+    }, [flag]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -150,7 +170,6 @@ const Browse = () => {
     let genreName = []
     genreList.map(genre => {
         genreName.push(genre.name)
-        console.log(genre.name)
     })
 
     return (
@@ -165,7 +184,7 @@ const Browse = () => {
                 height: '60px',
             }}>
                 <p className='headerPara'> Super App </p>
-                <img src={browseIcon} alt="dashboardIcon" className='headerImg'/>
+                <img src={browseIcon} alt="dashboardIcon" className='headerImg' />
             </div>
             <div>
                 <p className='browseBody'>Entertainment according to your choice</p>

@@ -1,13 +1,36 @@
-import React from 'react'
-import { userInfo } from '../utils/userInfo'
-import { genreData } from '../utils/genreName'
+import React, { useEffect, useState } from 'react'
 import image15 from '../../../public/assets/image15.png'
 import './Dashboard.css'
 
 const UserInfo = () => {
 
-  const user = userInfo || {};
-  const genreName = genreData || [];
+  const [user, setUserInfo] = useState([]);
+  const [genreName, setGenreName] = useState([])
+
+  useEffect(() => {
+    const userInfoDataJson = localStorage.getItem('formData');
+    if (userInfoDataJson) {
+      const parsedUserInfo = JSON.parse(userInfoDataJson);
+      setUserInfo(parsedUserInfo);
+    }
+
+    const selectedMoviesJSON = localStorage.getItem("selectedMovies");
+    const moviesDataJSON = localStorage.getItem("moviesData");
+
+    if (selectedMoviesJSON && moviesDataJSON) {
+      const selectedMovies = JSON.parse(selectedMoviesJSON);
+      const moviesData = JSON.parse(moviesDataJSON);
+
+      const genreData = selectedMovies.map((id) => {
+        return moviesData.find((movie) => movie.id === id);
+      });
+      setGenreName(genreData);
+    }
+
+  }, []); // Empty dependency array ensures this effect runs only once, similar to componentDidMount
+
+
+
 
   return (
     <div className='userInfoDiv'>
