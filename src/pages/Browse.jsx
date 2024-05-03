@@ -111,7 +111,6 @@ const Browse = () => {
             });
 
             const results = await Promise.all(promises);
-            console.log('Fetched movie data:', results);
             const flattenedMovies = results.reduce((acc, val) => acc.concat(val), []);
             setMovies(flattenedMovies);
             setLoading(false);
@@ -135,8 +134,6 @@ const Browse = () => {
                         return moviesData.find((movie) => movie.id === id)?.name;
                     });
 
-                    console.log('Genre data from localStorage:', genreData);
-
                     const genreMemory = genreData.map(name => {
                         return genreIds.find(data => {
                             if (name === data.name)
@@ -144,8 +141,6 @@ const Browse = () => {
                             return null;
                         });
                     });
-
-                    console.log('Mapped genre data:', genreMemory);
                     setGenreList(genreMemory);
                     setFlag(true);
                 }

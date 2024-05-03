@@ -72,26 +72,3 @@ const News = () => {
 }
 
 export default News
-
-
-
-
-
-
-        // const url = 'https://google-news13.p.rapidapi.com/latest?lr=en-IN';
-        // const options = {
-        //     method: 'GET',
-        //     headers: {
-        //         'X-RapidAPI-Key': 'a96e25aa9emshb4c318b4bc68d04p14f8f1jsnd20a5f1b35c3',
-        //         'X-RapidAPI-Host': 'google-news13.p.rapidapi.com'
-        //     }
-        // };
-
-        // try {
-        //     fetch(url, options)
-        //     .then((response) => response.json())
-        //     .then(res => res.items)
-        //     .then(data => setNews(data));
-        // } catch (error) {
-        //     console.error(error);
-        // }
