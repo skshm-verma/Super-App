@@ -6,8 +6,8 @@ import './Dashboard.css'
 
 const UserInfo = () => {
 
-  const user = userInfo
-  const genreName = genreData
+  const user = userInfo || {};
+  const genreName = genreData || [];
 
   return (
     <div className='userInfoDiv'>
@@ -21,9 +21,9 @@ const UserInfo = () => {
         <div>
 
           <div className='userInfo'>
-            <p>{user.name}</p>
-            <p>{user.email}</p>
-            <p style={{ fontSize: '3.0rem' }}>{user.userName}</p>
+            <p>{user.name || ''}</p>
+            <p>{user.email || ''}</p>
+            <p style={{ fontSize: '3.0rem' }}>{user.userName || ''}</p>
           </div>
 
           <div style={{ marginTop: '15px' }}>

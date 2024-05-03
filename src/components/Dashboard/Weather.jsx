@@ -14,7 +14,7 @@ const Weather = () => {
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': 'a96e25aa9emshb4c318b4bc68d04p14f8f1jsnd20a5f1b35c3',
+                'X-RapidAPI-Key': 'a96e25aa9emshb4c318b4bc68d04p14f8f1jsnd20a5f1b35c3/',
                 'X-RapidAPI-Host': 'visual-crossing-weather.p.rapidapi.com'
             }
         };
