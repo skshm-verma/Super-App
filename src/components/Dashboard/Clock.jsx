@@ -53,7 +53,7 @@ const Clock = () => {
 
 
   const children = ({ remainingTime }) => {
-    
+
     const hours = Math.floor(remainingTime / 3600).toString().padStart(2, '0');
     const minutes = Math.floor((remainingTime % 3600) / 60).toString().padStart(2, '0');
     const seconds = (remainingTime % 60).toString().padStart(2, '0');
@@ -97,7 +97,7 @@ const Clock = () => {
                 height="16"
                 src={upArrow}
                 alt="upArrow"
-                style={{ backgroundColor: '#1E2343' }}
+                style={{ backgroundColor: '#1E2343' , cursor: 'pointer' }}
               />
             </button>
             <span className='timerCalData'>
@@ -109,7 +109,7 @@ const Clock = () => {
                 height="16"
                 src={downArrow}
                 alt="downArrow"
-                style={{ backgroundColor: '#1E2343' }}
+                style={{ backgroundColor: '#1E2343', cursor: 'pointer'  }}
               />
             </button>
           </div>
@@ -123,7 +123,7 @@ const Clock = () => {
                 height="16"
                 src={upArrow}
                 alt="upArrow"
-                style={{ backgroundColor: '#1E2343' }} />
+                style={{ backgroundColor: '#1E2343', cursor: 'pointer'  }} />
             </button>
             <span className='timerCalData'>
               {duration > 3600 ? Math.floor((duration % 3600) / 60) : Math.floor(duration / 60)}
@@ -133,7 +133,9 @@ const Clock = () => {
                 width="16"
                 height="16"
                 src={downArrow}
-                alt="downArrow" />
+                alt="downArrow"
+                style={{ backgroundColor: '#1E2343', cursor: 'pointer'  }} 
+                 />
             </button>
           </div>
 
@@ -145,7 +147,8 @@ const Clock = () => {
                 width="16"
                 height="16"
                 src={upArrow}
-                alt="upArrow" />
+                alt="upArrow"
+                style={{ backgroundColor: '#1E2343', cursor: 'pointer'  }} />
             </button>
             <span className='timerCalData'>
               {duration > 60 ? duration % 60 : duration}
@@ -155,7 +158,8 @@ const Clock = () => {
                 width="16"
                 height="16"
                 src={downArrow}
-                alt="downArrow" />
+                alt="downArrow" 
+                style={{ backgroundColor: '#1E2343', cursor: 'pointer'  }} />
             </button>
           </div>
         </div>
