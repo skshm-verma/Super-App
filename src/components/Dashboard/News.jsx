@@ -11,7 +11,7 @@ const News = () => {
           setIsLoading(true); // Set loading state to true
           setError(null); // Clear potential errors
           try {
-            const response = await fetch('https://newsdata.io/api/1/news?apikey=pub_4339544e36cda2318a44f5b6dc34fcccb9b0c&country=in');
+            const response = await fetch('https://newsdata.io/api/1/news?apikey=pub_4339544e36cda2318a44f5b6dc34fcccb9b0c&q=cricket');
             const data = await response.json();
             const dataArray = await data.results
             setNews(dataArray);

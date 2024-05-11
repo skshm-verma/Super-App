@@ -53,9 +53,10 @@ const Clock = () => {
 
 
   const children = ({ remainingTime }) => {
-    const hours = Math.floor(remainingTime / 3600)
-    const minutes = Math.floor((remainingTime % 3600) / 60)
-    const seconds = remainingTime % 60
+    
+    const hours = Math.floor(remainingTime / 3600).toString().padStart(2, '0');
+    const minutes = Math.floor((remainingTime % 3600) / 60).toString().padStart(2, '0');
+    const seconds = (remainingTime % 60).toString().padStart(2, '0');
 
     return <div className='counterStyle'>
       <div style={{ fontSize: '18px', fontFamily: 'Roboto' }}>Remaining</div>
@@ -192,6 +193,4 @@ const Clock = () => {
 }
 
 export default Clock
-
-
 
